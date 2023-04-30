@@ -2,6 +2,7 @@ package com.endeavorsheep.orgs.ui.activity
 
 import android.app.Activity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.endeavorsheep.orgs.R
@@ -9,13 +10,14 @@ import com.endeavorsheep.orgs.model.Product
 import com.endeavorsheep.orgs.ui.recyclerview.adapter.ProductListAdapter
 import java.math.BigDecimal
 
-class MainActivity : Activity() {
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Configure the display of view
-        setContentView(R.layout.activity_main)
+        // Hide support bar
+        supportActionBar?.hide()
+
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_product_list)
         recyclerView.adapter = ProductListAdapter(
             this, listOf(
@@ -36,7 +38,7 @@ class MainActivity : Activity() {
                 )
             )
         )
-        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
 }
