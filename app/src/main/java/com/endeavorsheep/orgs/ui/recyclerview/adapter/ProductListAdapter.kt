@@ -11,9 +11,9 @@ import com.endeavorsheep.orgs.model.Product
 
 class ProductListAdapter(
     private val context: Context,
-    private val products: List<Product>
-
+    products: List<Product>
 ) : RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
+    private val products = products.toMutableList()
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -42,4 +42,10 @@ class ProductListAdapter(
     }
 
     override fun getItemCount(): Int = products.size
+
+    fun refresh(product: List<Product>) {
+        this.products.clear()
+        this.products.addAll(product)
+        notifyDataSetChanged()
+    }
 }

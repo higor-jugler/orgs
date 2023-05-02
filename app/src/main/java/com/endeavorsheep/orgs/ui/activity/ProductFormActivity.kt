@@ -1,13 +1,11 @@
 package com.endeavorsheep.orgs.ui.activity
 
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.endeavorsheep.orgs.R
 import com.endeavorsheep.orgs.dao.ProductsDao
 import com.endeavorsheep.orgs.model.Product
@@ -46,7 +44,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
             val productDao = ProductsDao()
             productDao.addProduct(product)
             Log.i("ProductsDao", "onCreate: $productDao")
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, ProductListActivity::class.java))
             finish()
         }
     }
