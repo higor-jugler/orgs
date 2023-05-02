@@ -1,13 +1,17 @@
 package com.endeavorsheep.orgs.ui.activity
 
 import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.service.controls.actions.FloatAction
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.endeavorsheep.orgs.R
 import com.endeavorsheep.orgs.model.Product
 import com.endeavorsheep.orgs.ui.recyclerview.adapter.ProductListAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -38,7 +42,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 )
             )
         )
-//        recyclerView.layoutManager = LinearLayoutManager(this)
+        val buttonAdd = findViewById<FloatingActionButton>(R.id.floating_action_button)
+        buttonAdd.setOnClickListener {
+            startActivity(Intent(this, ProductFormActivity::class.java))
+        }
     }
-
 }
