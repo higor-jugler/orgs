@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.endeavorsheep.orgs.R
+import com.endeavorsheep.orgs.dao.ProductsDao
 import com.endeavorsheep.orgs.model.Product
 import java.math.BigDecimal
 
@@ -36,8 +37,10 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
             }
             // Assemble product
             val product = Product(name, description, price)
-
             Log.i("ActivityProductForm", "onCreate: $product")
+            val productDao = ProductsDao()
+            productDao.addProduct(product)
+            Log.i("ProductsDao", "onCreate: $productDao")
         }
     }
 }
