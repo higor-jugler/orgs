@@ -6,15 +6,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.endeavorsheep.orgs.R
 import com.endeavorsheep.orgs.dao.ProductsDao
+import com.endeavorsheep.orgs.databinding.ActivityProductListBinding
 import com.endeavorsheep.orgs.ui.recyclerview.adapter.ProductListAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class ProductListActivity : AppCompatActivity(R.layout.activity_product_list) {
+class ProductListActivity : AppCompatActivity() {
+    lateinit var binding: ActivityProductListBinding
     private val productsDao = ProductsDao()
     private val startAdapter = ProductListAdapter(this, productsDao.searchAll())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityProductListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setRecyclerView()
     }
 
