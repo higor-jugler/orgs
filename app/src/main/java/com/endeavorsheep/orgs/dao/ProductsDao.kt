@@ -1,6 +1,7 @@
 package com.endeavorsheep.orgs.dao
 
 import com.endeavorsheep.orgs.model.Product
+import java.math.BigDecimal
 
 class ProductsDao {
 
@@ -13,6 +14,12 @@ class ProductsDao {
     }
 
     companion object {
-        private val products = mutableListOf<Product>()
+        private val products = mutableListOf<Product>(
+            Product(
+                "Fruit salad",
+                "Orange, mango and grape",
+                BigDecimal("9.99")
+            )
+        )
     }
 }
