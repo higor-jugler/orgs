@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.endeavorsheep.orgs.R
 import com.endeavorsheep.orgs.model.Product
+import java.text.NumberFormat
+import java.util.*
 
 class ProductListAdapter(
     private val context: Context,
@@ -23,7 +25,10 @@ class ProductListAdapter(
             val description = itemView.findViewById<TextView>(R.id.text_description)
             description.text = product.description
             val price = itemView.findViewById<TextView>(R.id.text_price)
-            price.text = product.price.toPlainString()
+            val currencyInstance: NumberFormat = NumberFormat
+                .getCurrencyInstance(Locale("pt", "br"))
+            val formatPrice: String = currencyInstance.format(product.price)
+            price.text = formatPrice
         }
     }
 
