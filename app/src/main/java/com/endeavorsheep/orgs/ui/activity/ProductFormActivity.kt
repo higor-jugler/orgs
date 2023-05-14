@@ -9,15 +9,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.endeavorsheep.orgs.R
 import com.endeavorsheep.orgs.dao.ProductsDao
 import com.endeavorsheep.orgs.databinding.ActivityProductFormBinding
+import com.endeavorsheep.orgs.databinding.ActivityProductListBinding
 import com.endeavorsheep.orgs.model.Product
 import java.math.BigDecimal
 
 class ProductFormActivity : AppCompatActivity() {
-    lateinit var binding: ActivityProductFormBinding
+    private val binding by lazy {
+        ActivityProductFormBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityProductFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
@@ -26,20 +28,20 @@ class ProductFormActivity : AppCompatActivity() {
         // Hide support bar
         supportActionBar?.hide()
         // Action for button save
-        val buttonSave = findViewById<Button>(R.id.button_save)
+        val buttonSave = binding.buttonSave
         setButtonSave(buttonSave)
     }
 
     private fun setButtonSave(buttonSave: Button) {
         buttonSave.setOnClickListener {
             // Field Name
-            val fieldName = findViewById<EditText>(R.id.edit_name)
+            val fieldName = binding.editName
             val name = fieldName.text.toString()
             // Field Description
-            val fieldDescription = findViewById<EditText>(R.id.edit_description)
+            val fieldDescription = binding.editDescription
             val description = fieldDescription.text.toString()
             // Field Price
-            val fieldPrice = findViewById<EditText>(R.id.edit_price)
+            val fieldPrice = binding.editPrice
             val convertPrice = fieldPrice.text.toString()
             val price = if (convertPrice.isBlank()) {
                 BigDecimal.ZERO
