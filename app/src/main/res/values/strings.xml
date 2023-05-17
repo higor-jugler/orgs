@@ -4,4 +4,9 @@
     <string name="edit_description">Descrição</string>
     <string name="edit_price">Valor</string>
     <string name="button_save">salvar</string>
+    <string name="textInput_name">Nome</string>
+    <string name="material_product_name">Nome</string>
+    <string name="text_input_edit_name">Nome</string>
+    <string name="text_input_layout_description">Descrição</string>
+    <string name="text_input_edit_price">Valor</string>
 </resources>

@@ -35,13 +35,13 @@ class ProductFormActivity : AppCompatActivity() {
     private fun setButtonSave(buttonSave: Button) {
         buttonSave.setOnClickListener {
             // Field Name
-            val fieldName = binding.editName
+            val fieldName = binding.textInputEditName
             val name = fieldName.text.toString()
             // Field Description
-            val fieldDescription = binding.editDescription
+            val fieldDescription = binding.textInputEditDescription
             val description = fieldDescription.text.toString()
             // Field Price
-            val fieldPrice = binding.editPrice
+            val fieldPrice = binding.textInputEditPrice
             val convertPrice = fieldPrice.text.toString()
             val price = if (convertPrice.isBlank()) {
                 BigDecimal.ZERO
