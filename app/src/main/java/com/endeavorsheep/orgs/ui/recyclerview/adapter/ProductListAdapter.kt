@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.endeavorsheep.orgs.R
+import com.endeavorsheep.orgs.databinding.ProductListBinding
 import com.endeavorsheep.orgs.model.Product
 import java.text.NumberFormat
 import java.util.*
@@ -17,18 +19,20 @@ class ProductListAdapter(
 ) : RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
     private val products = products.toMutableList()
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(private val binding: ProductListBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(product: Product) {
-            val name = itemView.findViewById<TextView>(R.id.text_name)
+            val name = binding.textName
             name.text = product.name
-            val description = itemView.findViewById<TextView>(R.id.text_description)
+            val description = binding.textDescription
             description.text = product.description
-            val price = itemView.findViewById<TextView>(R.id.text_price)
+            val price = binding.textPrice
             val currencyInstance: NumberFormat = NumberFormat
                 .getCurrencyInstance(Locale("pt", "br"))
             val formatPrice: String = currencyInstance.format(product.price)
             price.text = formatPrice
+            // Resource of Coil
+            binding.imageViewProduct.load("https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
         }
     }
 
@@ -37,8 +41,8 @@ class ProductListAdapter(
         viewType: Int
     ): ProductListAdapter.ViewHolder {
         val layoutInflater = LayoutInflater.from(context)
-        val view = layoutInflater.inflate(R.layout.product_list, parent, false)
-        return ViewHolder(view)
+        val binding = ProductListBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ProductListAdapter.ViewHolder, position: Int) {
