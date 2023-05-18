@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.endeavorsheep.orgs.R
 import com.endeavorsheep.orgs.dao.ProductsDao
@@ -21,6 +22,17 @@ class ProductFormActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        binding.imageProduct.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setView(R.layout.image_form)
+                .setPositiveButton("") {
+                    _, _ ->
+                }
+                .setNegativeButton("Cancelar") {
+                    _,_ ->
+                }
+                .show()
+        }
     }
 
     override fun onResume() {

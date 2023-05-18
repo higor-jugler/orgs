@@ -9,4 +9,6 @@
     <string name="text_input_edit_name">Nome</string>
     <string name="text_input_layout_description">Descrição</string>
     <string name="text_input_edit_price">Valor</string>
+    <string name="button_form">carregar</string>
+    <string name="text_input_edit_form_url">URL da imagem</string>
 </resources>

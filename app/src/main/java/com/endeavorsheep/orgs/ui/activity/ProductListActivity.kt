@@ -2,6 +2,7 @@ package com.endeavorsheep.orgs.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.endeavorsheep.orgs.dao.ProductsDao
 import com.endeavorsheep.orgs.databinding.ActivityProductListBinding
@@ -9,12 +10,13 @@ import com.endeavorsheep.orgs.ui.recyclerview.adapter.ProductListAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ProductListActivity : AppCompatActivity() {
-    
+
     private val productsDao = ProductsDao()
     private val startAdapter = ProductListAdapter(this, productsDao.searchAll())
     private val binding by lazy {
         ActivityProductListBinding.inflate(layoutInflater)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
