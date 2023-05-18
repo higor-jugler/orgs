@@ -7,10 +7,12 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import coil.load
 import com.endeavorsheep.orgs.R
 import com.endeavorsheep.orgs.dao.ProductsDao
 import com.endeavorsheep.orgs.databinding.ActivityProductFormBinding
 import com.endeavorsheep.orgs.databinding.ActivityProductListBinding
+import com.endeavorsheep.orgs.databinding.ImageFormBinding
 import com.endeavorsheep.orgs.model.Product
 import java.math.BigDecimal
 
@@ -23,13 +25,19 @@ class ProductFormActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.imageProduct.setOnClickListener {
+            val formBinding = ImageFormBinding.inflate(layoutInflater)
+            formBinding.buttonForm.setOnClickListener {
+                val url = formBinding.textInputEditFormUrl.text.toString()
+                formBinding.imageForm.load(url)
+            }
+
             AlertDialog.Builder(this)
-                .setView(R.layout.image_form)
-                .setPositiveButton("") {
-                    _, _ ->
+                .setView(formBinding.root)
+                .setPositiveButton("Confirmar") { _, _ ->
+                    val url = formBinding.textInputEditFormUrl.text.toString()
+                    binding.imageProduct.load(url)
                 }
-                .setNegativeButton("Cancelar") {
-                    _,_ ->
+                .setNegativeButton("Cancelar") { _, _ ->
                 }
                 .show()
         }
