@@ -14,6 +14,7 @@ import com.endeavorsheep.orgs.databinding.ActivityProductFormBinding
 import com.endeavorsheep.orgs.databinding.ActivityProductListBinding
 import com.endeavorsheep.orgs.databinding.ImageFormBinding
 import com.endeavorsheep.orgs.model.Product
+import com.endeavorsheep.orgs.ui.dialog.ImageFormDialog
 import java.math.BigDecimal
 
 class ProductFormActivity : AppCompatActivity() {
@@ -26,21 +27,7 @@ class ProductFormActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.imageProduct.setOnClickListener {
-            val formBinding = ImageFormBinding.inflate(layoutInflater)
-            formBinding.buttonForm.setOnClickListener {
-                val url = formBinding.textInputEditFormUrl.text.toString()
-                formBinding.imageForm.load(url)
-            }
-
-            AlertDialog.Builder(this)
-                .setView(formBinding.root)
-                .setPositiveButton("Confirmar") { _, _ ->
-                    url = formBinding.textInputEditFormUrl.text.toString()
-                    binding.imageProduct.load(url)
-                }
-                .setNegativeButton("Cancelar") { _, _ ->
-                }
-                .show()
+        ImageFormDialog(this).showDialog()
         }
     }
 
