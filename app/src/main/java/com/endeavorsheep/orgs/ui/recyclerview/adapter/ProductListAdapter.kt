@@ -32,7 +32,9 @@ class ProductListAdapter(
             val formatPrice: String = currencyInstance.format(product.price)
             price.text = formatPrice
             // Resource of Coil
-            binding.imageViewProduct.load(product.image)
+            binding.imageViewProduct.load(product.image) {
+                error(R.drawable.erro)
+            }
         }
     }
 
