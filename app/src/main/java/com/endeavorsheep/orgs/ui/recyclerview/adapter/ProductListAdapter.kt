@@ -32,7 +32,7 @@ class ProductListAdapter(
             val formatPrice: String = currencyInstance.format(product.price)
             price.text = formatPrice
             // Resource of Coil
-            binding.imageViewProduct.load("https://images.pexels.com/photos/1267696/pexels-photo-1267696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+            binding.imageViewProduct.load(product.image)
         }
     }
 

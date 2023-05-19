@@ -20,6 +20,7 @@ class ProductFormActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityProductFormBinding.inflate(layoutInflater)
     }
+    private var url: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,7 @@ class ProductFormActivity : AppCompatActivity() {
             AlertDialog.Builder(this)
                 .setView(formBinding.root)
                 .setPositiveButton("Confirmar") { _, _ ->
-                    val url = formBinding.textInputEditFormUrl.text.toString()
+                    url = formBinding.textInputEditFormUrl.text.toString()
                     binding.imageProduct.load(url)
                 }
                 .setNegativeButton("Cancelar") { _, _ ->
@@ -53,38 +54,35 @@ class ProductFormActivity : AppCompatActivity() {
     }
 
     private fun setButtonSave(buttonSave: Button) {
+        val buttonSave = binding.buttonSave
+        val dao = ProductsDao()
         buttonSave.setOnClickListener {
-            // Field Name
-            val fieldName = binding.textInputEditName
-            val name = fieldName.text.toString()
-            // Field Description
-            val fieldDescription = binding.textInputEditDescription
-            val description = fieldDescription.text.toString()
-            // Field Price
-            val fieldPrice = binding.textInputEditPrice
-            val convertPrice = fieldPrice.text.toString()
-            val price = if (convertPrice.isBlank()) {
-                BigDecimal.ZERO
-            } else {
-                BigDecimal(convertPrice)
-            }
-            // Assemble product
-            initProduct(name, description, price)
+            val newProduct = initProduct()
+            dao.addProduct(newProduct)
+            finish()
         }
     }
 
     /**
      * Create product
      */
-    private fun initProduct(
-        name: String,
-        description: String,
-        price: BigDecimal
-    ) {
-        val product = Product(name, description, price)
-        val productDao = ProductsDao()
-        productDao.addProduct(product)
-        startActivity(Intent(this, ProductListActivity::class.java))
-        finish()
+    private fun initProduct(): Product {
+        val fieldName = binding.textInputEditName
+        val name = fieldName.text.toString()
+        val fieldDescription = binding.textInputEditDescription
+        val description = fieldDescription.text.toString()
+        val fieldPrice = binding.textInputEditPrice
+        val convertPrice = fieldPrice.text.toString()
+        val price = if (convertPrice.isBlank()) {
+            BigDecimal.ZERO
+        } else {
+            BigDecimal(convertPrice)
+        }
+        return Product(
+            name = name,
+            description = description,
+            price = price,
+            image = url
+        )
     }
 }
