@@ -1,34 +1,38 @@
 package com.endeavorsheep.orgs.ui.dialog
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
-import coil.load
 import com.endeavorsheep.orgs.databinding.ImageFormBinding
+import com.endeavorsheep.orgs.extensions.tryToLoad
 
 class ImageFormDialog(private val context: Context) {
 
-    fun showDialog() {
-        val binding = ImageFormBinding
-            .inflate(LayoutInflater.from(context))
+    fun showDialog(
+        urlStandard: String? = null,
+        waitLoadImage: (image: String) -> Unit
+    ) {
+        ImageFormBinding
+            .inflate(LayoutInflater.from(context)).apply {
 
-        binding.buttonForm.setOnClickListener {
-            val url = binding.textInputEditFormUrl.text.toString()
-            binding.imageForm.load(url)
-        }
+                urlStandard?.let {
+                    imageForm.tryToLoad(it)
+                    textInputEditFormUrl.setText(it)
+                }
 
-        AlertDialog.Builder(context)
-            .setView(binding.root)
-            .setPositiveButton("Confirmar") { _, _ ->
-                val url =
-                    binding.textInputEditFormUrl.text.toString()
-                Log.i("ImageFormDialog", "show: $url")
+                buttonForm.setOnClickListener {
+                    val url = textInputEditFormUrl.text.toString()
+                    imageForm.tryToLoad(url)
+                }
+                AlertDialog.Builder(context)
+                    .setView(root)
+                    .setPositiveButton("Confirmar") { _, _ ->
+                        val url = textInputEditFormUrl.text.toString()
+                        waitLoadImage(url)
+                    }
+                    .setNegativeButton("Cancelar") { _, _ ->
+                    }
+                    .show()
             }
-            .setNegativeButton("Cancelar") { _, _ ->
-            }
-            .show()
-
     }
-
 }

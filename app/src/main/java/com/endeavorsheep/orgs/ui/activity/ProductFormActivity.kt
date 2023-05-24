@@ -7,12 +7,14 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import coil.imageLoader
 import coil.load
 import com.endeavorsheep.orgs.R
 import com.endeavorsheep.orgs.dao.ProductsDao
 import com.endeavorsheep.orgs.databinding.ActivityProductFormBinding
 import com.endeavorsheep.orgs.databinding.ActivityProductListBinding
 import com.endeavorsheep.orgs.databinding.ImageFormBinding
+import com.endeavorsheep.orgs.extensions.tryToLoad
 import com.endeavorsheep.orgs.model.Product
 import com.endeavorsheep.orgs.ui.dialog.ImageFormDialog
 import java.math.BigDecimal
@@ -26,21 +28,27 @@ class ProductFormActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        title = "Cadastrar produto"
+        setButtonSave()
         binding.imageProduct.setOnClickListener {
-        ImageFormDialog(this).showDialog()
+        ImageFormDialog(this)
+            .showDialog(url) {
+                image -> url = image
+                binding.imageProduct.tryToLoad(url)
+            }
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        // Hide support bar
-        supportActionBar?.hide()
-        // Action for button save
-        val buttonSave = binding.buttonSave
-        setButtonSave(buttonSave)
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        // Hide support bar
+//        supportActionBar?.hide()
+//        // Action for button save
+//        val buttonSave = binding.buttonSave
+//        setButtonSave(buttonSave)
+//    }
 
-    private fun setButtonSave(buttonSave: Button) {
+    private fun setButtonSave() {
         val buttonSave = binding.buttonSave
         val dao = ProductsDao()
         buttonSave.setOnClickListener {
