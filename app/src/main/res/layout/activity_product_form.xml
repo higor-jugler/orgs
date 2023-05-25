@@ -32,6 +32,7 @@
             app:layout_constraintTop_toBottomOf="@id/image_product">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:fontFamily="@font/montserrat"
                 android:id="@+id/text_input_edit_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,6 +51,7 @@
             app:layout_constraintTop_toBottomOf="@id/text_input_layout_name">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:fontFamily="@font/montserrat"
                 android:id="@+id/text_input_edit_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,6 +70,7 @@
             app:layout_constraintTop_toBottomOf="@id/text_input_layout_description">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:fontFamily="@font/montserrat"
                 android:id="@+id/text_input_edit_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,6 +80,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:fontFamily="@font/montserrat"
             android:id="@+id/button_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -24,6 +24,7 @@ class ImageFormDialog(private val context: Context) {
                     val url = textInputEditFormUrl.text.toString()
                     imageForm.tryToLoad(url)
                 }
+
                 AlertDialog.Builder(context)
                     .setView(root)
                     .setPositiveButton("Confirmar") { _, _ ->
