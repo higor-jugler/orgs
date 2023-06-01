@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.endeavorsheep.orgs.dao.ProductsDao
+import com.endeavorsheep.orgs.databinding.ActivityDetailScreensBinding
 import com.endeavorsheep.orgs.databinding.ActivityProductListBinding
 import com.endeavorsheep.orgs.ui.recyclerview.adapter.ProductListAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -38,6 +39,15 @@ class ProductListActivity : AppCompatActivity() {
     private fun setRecyclerView() {
         val recyclerView = binding.recyclerProductList
         recyclerView.adapter = startAdapter
+        startAdapter.whenClickOnItem = {
+            val intent = Intent(
+                this,
+                DetailScreensActivity::class.java
+            ).apply {
+                putExtra(KEY_PRODUCT, it)
+            }
+            startActivity(intent)
+        }
     }
 
     /**

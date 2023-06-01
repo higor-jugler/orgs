@@ -24,4 +24,8 @@
     <color name="colorSecondaryVariant">#76d275</color>
     <color name="colorOnSecondary">#ffffff</color>
 
+    <style name="Theme.Orgs.NoActionBar" parent="Theme.Orgs">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>

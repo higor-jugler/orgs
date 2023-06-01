@@ -11,4 +11,5 @@
     <string name="text_input_edit_price">Valor</string>
     <string name="button_form">carregar</string>
     <string name="text_input_edit_form_url">URL da imagem</string>
+    <string name="product_image">Product image</string>
 </resources>

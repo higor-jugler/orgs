@@ -2,24 +2,33 @@ package com.endeavorsheep.orgs.ui.recyclerview.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.endeavorsheep.orgs.R
 import com.endeavorsheep.orgs.databinding.ProductListBinding
 import com.endeavorsheep.orgs.model.Product
 import java.text.NumberFormat
-import java.util.*
+import java.util.Locale
 
 class ProductListAdapter(
     private val context: Context,
-    products: List<Product>
+    products: List<Product>,
+    var whenClickOnItem: (product: Product) -> Unit = {}
 ) : RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
     private val products = products.toMutableList()
 
-    class ViewHolder(private val binding: ProductListBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ProductListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        private lateinit var product: Product
+        init {
+            itemView.setOnClickListener {
+                if (::product.isInitialized) {
+                    whenClickOnItem(product)
+                }
+            }
+        }
 
         fun bind(product: Product) {
             val name = binding.textName
@@ -60,3 +69,18 @@ class ProductListAdapter(
         notifyDataSetChanged()
     }
 }
+
+/**
+ * In Kotlin, an inner class is a class defined inside another class.
+ * The main difference between an inner class and a nested class is that an inner class has access
+ * to the members of the outer class, including the private members.
+ * This allows for a tight association between the outer class and the inner class,
+ * where the inner class can access and modify the outer class's members.
+ */
+
+/**
+ * the :: operator in Kotlin lets you create references to top functions,
+ * member functions, and properties, and later call or access them as needed.
+ * This is useful in situations where you need to pass a function as an argument
+ * to another function, or when you want to work with reflection and code introspection.
+ */
