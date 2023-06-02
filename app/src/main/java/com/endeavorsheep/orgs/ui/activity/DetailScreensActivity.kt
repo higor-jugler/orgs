@@ -29,7 +29,7 @@ class DetailScreensActivity : AppCompatActivity() {
         with(binding) {
             imageDetailScreens.tryToLoad(productLoaded.image)
             textDetailScreensDescription.text = productLoaded.name
-            textDetailScreensInfo.text = productLoaded.description
+//            textDetailScreensInfo.text = productLoaded.description
             textDetailScreensPrice.text = productLoaded.price.formatPrice()
         }
     }

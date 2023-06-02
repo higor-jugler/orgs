@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:context=".ui.activity.DetailScreensActivity">
 
         <ImageView
             android:id="@+id/image_detail_screens"
@@ -32,23 +33,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image_detail_screens"
+            app:layout_constraintTop_toBottomOf="@id/text_detail_screens_price"
             app:layout_constraintVertical_bias="0.0"
             tools:text="@tools:sample/lorem[10]" />
 
-        <TextView
-            android:id="@+id/text_detail_screens_info"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:gravity="top"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_detail_screens_description"
-            app:layout_constraintVertical_bias="0.0"
-            tools:text="@tools:sample/lorem/random" />
+<!--        <TextView-->
+<!--            android:id="@+id/text_detail_screens_info"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:gravity="top"-->
+<!--            android:textSize="20sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/text_detail_screens_description"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <TextView
             android:id="@+id/text_detail_screens_price"
@@ -56,8 +54,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:background="@drawable/background_modified"
-            android:fontFamily="@font/montserrat_bold"
             android:elevation="10dp"
+            android:fontFamily="@font/montserrat_bold"
             android:padding="8dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"

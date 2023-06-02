@@ -28,26 +28,9 @@ class ProductListActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         // Hide support bar
-        supportActionBar?.hide()
+//        supportActionBar?.hide()
         startAdapter.refresh(productsDao.searchAll())
 
-    }
-
-    /**
-     * Create and instantiate the recycler view method
-     */
-    private fun setRecyclerView() {
-        val recyclerView = binding.recyclerProductList
-        recyclerView.adapter = startAdapter
-        startAdapter.whenClickOnItem = {
-            val intent = Intent(
-                this,
-                DetailScreensActivity::class.java
-            ).apply {
-                putExtra(KEY_PRODUCT, it)
-            }
-            startActivity(intent)
-        }
     }
 
     /**
@@ -64,6 +47,23 @@ class ProductListActivity : AppCompatActivity() {
     private fun sendToActiveForm(buttonAdd: FloatingActionButton) {
         buttonAdd.setOnClickListener {
             startActivity(Intent(this, ProductFormActivity::class.java))
+        }
+    }
+
+    /**
+     * Create and instantiate the recycler view method
+     */
+    private fun setRecyclerView() {
+        val recyclerView = binding.recyclerProductList
+        recyclerView.adapter = startAdapter
+        startAdapter.whenClickOnItem = {
+            val intent = Intent(
+                this,
+                DetailScreensActivity::class.java
+            ).apply {
+                putExtra(KEY_PRODUCT, it)
+            }
+            startActivity(intent)
         }
     }
 

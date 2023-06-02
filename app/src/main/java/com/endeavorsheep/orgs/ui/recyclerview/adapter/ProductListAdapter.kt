@@ -16,12 +16,14 @@ class ProductListAdapter(
     products: List<Product>,
     var whenClickOnItem: (product: Product) -> Unit = {}
 ) : RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
+
     private val products = products.toMutableList()
 
     inner class ViewHolder(private val binding: ProductListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         private lateinit var product: Product
+
         init {
             itemView.setOnClickListener {
                 if (::product.isInitialized) {
@@ -31,6 +33,7 @@ class ProductListAdapter(
         }
 
         fun bind(product: Product) {
+            this.product = product
             val name = binding.textName
             name.text = product.name
             val description = binding.textDescription
@@ -48,8 +51,7 @@ class ProductListAdapter(
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+        parent: ViewGroup, viewType: Int
     ): ProductListAdapter.ViewHolder {
         val layoutInflater = LayoutInflater.from(context)
         val binding = ProductListBinding.inflate(layoutInflater, parent, false)
