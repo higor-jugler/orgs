@@ -2,10 +2,13 @@ package com.endeavorsheep.orgs.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.endeavorsheep.orgs.database.converter.Converters
 import com.endeavorsheep.orgs.database.dao.ProductDao
 import com.endeavorsheep.orgs.model.Product
 
 @Database(entities = [Product::class], version = 1)
+@TypeConverters(Converters::class)
 abstract class AppDataBase : RoomDatabase() {
     abstract fun productsDao(): ProductDao
 }
