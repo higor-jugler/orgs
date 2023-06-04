@@ -4,11 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 import com.endeavorsheep.orgs.dao.ProductsDao
+import com.endeavorsheep.orgs.database.AppDataBase
 import com.endeavorsheep.orgs.databinding.ActivityDetailScreensBinding
 import com.endeavorsheep.orgs.databinding.ActivityProductListBinding
+import com.endeavorsheep.orgs.model.Product
 import com.endeavorsheep.orgs.ui.recyclerview.adapter.ProductListAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.math.BigDecimal
 
 class ProductListActivity : AppCompatActivity() {
 
@@ -23,13 +27,34 @@ class ProductListActivity : AppCompatActivity() {
         setContentView(binding.root)
         setRecyclerView()
         setFab()
+
+        val db = Room.databaseBuilder(
+            this,
+            AppDataBase::class.java,
+            "app_orgs.db"
+
+            //This method allows the app to run without checking the
+            // exception to block the room from running on the main thread.
+            // This method is not recommended because if the room freezes,
+            // the entire app will crash.
+        ).allowMainThreadQueries()
+            .build()
+        val productDao = db.productsDao()
+        productDao.save(
+            Product(
+                0L,
+                "Test",
+                "Test Desc",
+                BigDecimal("123.44"))
+        )
+        startAdapter.refresh(productsDao.searchAll())
     }
 
     override fun onResume() {
         super.onResume()
         // Hide support bar
-//        supportActionBar?.hide()
-        startAdapter.refresh(productsDao.searchAll())
+        supportActionBar?.hide()
+//        startAdapter.refresh(productsDao.searchAll())
 
     }
 
@@ -66,5 +91,4 @@ class ProductListActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
 }
