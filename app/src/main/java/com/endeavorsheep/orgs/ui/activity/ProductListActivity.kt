@@ -47,7 +47,7 @@ class ProductListActivity : AppCompatActivity() {
                 "Test Desc",
                 BigDecimal("123.44"))
         )
-        startAdapter.refresh(productsDao.searchAll())
+        startAdapter.refresh(productDao.searchAll())
     }
 
     override fun onResume() {
