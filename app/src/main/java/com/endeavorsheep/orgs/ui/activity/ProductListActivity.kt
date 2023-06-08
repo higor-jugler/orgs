@@ -27,35 +27,19 @@ class ProductListActivity : AppCompatActivity() {
         setContentView(binding.root)
         setRecyclerView()
         setFab()
-
-        val db = Room.databaseBuilder(
-            this,
-            AppDataBase::class.java,
-            "app_orgs.db"
-
-            //This method allows the app to run without checking the
-            // exception to block the room from running on the main thread.
-            // This method is not recommended because if the room freezes,
-            // the entire app will crash.
-        ).allowMainThreadQueries()
-            .build()
-        val productDao = db.productsDao()
-        productDao.save(
-            Product(
-                0L,
-                "Test",
-                "Test Desc",
-                BigDecimal("123.44"))
-        )
-        startAdapter.refresh(productDao.searchAll())
     }
 
     override fun onResume() {
         super.onResume()
-        // Hide support bar
         supportActionBar?.hide()
-//        startAdapter.refresh(productsDao.searchAll())
-
+        val db = Room.databaseBuilder(
+            this,
+            AppDataBase::class.java,
+            "app_orgs.db"
+        ).allowMainThreadQueries()
+            .build()
+        val productDao = db.productsDao()
+        startAdapter.refresh(productDao.searchAll())
     }
 
     /**
@@ -92,3 +76,11 @@ class ProductListActivity : AppCompatActivity() {
         }
     }
 }
+
+/**
+ * allowMainThreadQueries()
+ * This method allows the app to run without checking the
+ * exception to block the room from running on the main thread.
+ * This method is not recommended because if the room freezes,
+ * the entire app will crash.
+ */
