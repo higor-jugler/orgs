@@ -2,22 +2,16 @@ package com.endeavorsheep.orgs.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
-import com.endeavorsheep.orgs.dao.ProductsDao
 import com.endeavorsheep.orgs.database.AppDataBase
-import com.endeavorsheep.orgs.databinding.ActivityDetailScreensBinding
 import com.endeavorsheep.orgs.databinding.ActivityProductListBinding
-import com.endeavorsheep.orgs.model.Product
 import com.endeavorsheep.orgs.ui.recyclerview.adapter.ProductListAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.math.BigDecimal
 
 class ProductListActivity : AppCompatActivity() {
 
-    private val productsDao = ProductsDao()
-    private val startAdapter = ProductListAdapter(this, productsDao.searchAll())
+    private val startAdapter = ProductListAdapter(this)
     private val binding by lazy {
         ActivityProductListBinding.inflate(layoutInflater)
     }

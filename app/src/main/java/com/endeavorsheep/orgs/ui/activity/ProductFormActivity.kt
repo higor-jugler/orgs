@@ -1,21 +1,9 @@
 package com.endeavorsheep.orgs.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
-import coil.imageLoader
-import coil.load
-import com.endeavorsheep.orgs.R
-import com.endeavorsheep.orgs.dao.ProductsDao
 import com.endeavorsheep.orgs.database.AppDataBase
 import com.endeavorsheep.orgs.databinding.ActivityProductFormBinding
-import com.endeavorsheep.orgs.databinding.ActivityProductListBinding
-import com.endeavorsheep.orgs.databinding.ImageFormBinding
 import com.endeavorsheep.orgs.extensions.tryToLoad
 import com.endeavorsheep.orgs.model.Product
 import com.endeavorsheep.orgs.ui.dialog.ImageFormDialog

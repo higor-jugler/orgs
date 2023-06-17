@@ -13,7 +13,7 @@ import java.util.Locale
 
 class ProductListAdapter(
     private val context: Context,
-    products: List<Product>,
+    products: List<Product> = emptyList(),
     var whenClickOnItem: (product: Product) -> Unit = {}
 ) : RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
 
