@@ -25,7 +25,7 @@ class ProductListActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        supportActionBar?.hide()
+
         val db = Room.databaseBuilder(
             this,
             AppDataBase::class.java,
